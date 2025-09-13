@@ -1,6 +1,7 @@
 package hello.spring_ai.chat;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +11,10 @@ public class ChatService {
 
     public ChatService(ChatClient.Builder builder) {
         this.chatClient = builder
+                .defaultOptions(OpenAiChatOptions.builder()
+                        .model("gpt-4o")
+                        .temperature(0.7)
+                        .build())
                 .defaultSystem("""
                         내 이름은 테오야.
                         앞으로 모든 답변은 한국어로 해줘.
